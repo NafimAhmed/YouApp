@@ -8,6 +8,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PasswordfieldComponents extends StatelessWidget{
 
@@ -35,8 +36,13 @@ class PasswordfieldComponents extends StatelessWidget{
         obscureText: isSeen.value,
         controller: textEditingController,
         decoration: InputDecoration(
+          hintStyle: GoogleFonts.inter(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: Colors.grey.shade100
+          ),
             border: InputBorder.none,
-            hintText: '${hints}',
+            hintText: hints,
             suffixIcon: InkWell(
               onTap: (){
 
@@ -49,8 +55,9 @@ class PasswordfieldComponents extends StatelessWidget{
               },
                 child: Icon(
                   isSeen==true?
-                    Icons.visibility_off:
-                  Icons.visibility
+                    Icons.visibility_off_outlined:
+                  Icons.visibility_outlined,
+                  color: Colors.white,
                 )
             )
         ),
