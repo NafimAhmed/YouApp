@@ -30,15 +30,23 @@ class TextfieldComponents extends StatelessWidget{
           color: Colors.grey.withOpacity(0.7)
       ),
       child: TextField(
+        cursorColor: Colors.white,
+        style: GoogleFonts.inter(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+            color: Colors.white
+        ),
         controller: textEditingController,
         decoration: InputDecoration(
+
             hintStyle: GoogleFonts.inter(
                 fontSize: 13,
                 fontWeight: FontWeight.w500,
                 color: Colors.grey.shade100
             ),
             border: InputBorder.none,
-            hintText: hints
+            hintText: hints,
+
         ),
       ),
     );

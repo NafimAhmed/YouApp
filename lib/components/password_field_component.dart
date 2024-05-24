@@ -32,7 +32,13 @@ class PasswordfieldComponents extends StatelessWidget{
           color: Colors.grey.withOpacity(0.7)
       ),
       child: Obx(() => TextField(
-
+        obscuringCharacter: '*',
+        cursorColor: Colors.white,
+        style: GoogleFonts.inter(
+            fontSize: 13,
+            fontWeight: FontWeight.w500,
+            color: Colors.white
+        ),
         obscureText: isSeen.value,
         controller: textEditingController,
         decoration: InputDecoration(
