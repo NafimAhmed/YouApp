@@ -30,7 +30,7 @@ class LoginView extends GetView<LoginController>{
 
             Row(
               children: [
-                Icon(Icons.arrow_back_ios,color: Colors.white,),
+                const Icon(Icons.arrow_back_ios,color: Colors.white,),
                 Text('Back',style:GoogleFonts.inter(
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
@@ -40,7 +40,7 @@ class LoginView extends GetView<LoginController>{
             ),
 
 
-            SizedBox(height: 60,),
+            const SizedBox(height: 60,),
 
 
             Text('Login',
@@ -70,17 +70,16 @@ class LoginView extends GetView<LoginController>{
               alignment: Alignment.center,
               width: Get.width,
               height: 48,
+              decoration: BoxDecoration(
+                color: Colors.teal.shade300,
+                borderRadius: BorderRadius.circular(10)
+              ),
               child: Text('Login',
                 style: GoogleFonts.inter(
                     fontSize: 16,
                     fontWeight: FontWeight.w700,
                     color: Colors.white
                 ),
-              ),
-
-              decoration: BoxDecoration(
-                color: Colors.teal.shade300,
-                borderRadius: BorderRadius.circular(10)
               ),
             ),
 
