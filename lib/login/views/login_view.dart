@@ -4,7 +4,7 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
+// import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:you_app/components/password_field_component.dart';
@@ -36,11 +36,11 @@ class LoginView extends GetView<LoginController>{
 
 
 
-            SizedBox(height: 10,),
+            const SizedBox(height: 10,),
             TextfieldComponents(textEditingController: controller.emailController, hints: 'Enter Username/Email',),
 
 
-            SizedBox(height: 20,),
+            const SizedBox(height: 20,),
             
             PasswordfieldComponents(textEditingController: controller.passwordController, hints: 'Enter Password')
 
