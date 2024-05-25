@@ -10,6 +10,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:you_app/components/password_field_component.dart';
 
 import '../../components/text_field_component.dart';
+import '../../routes/app_pages.dart';
 import '../controller/login_controller.dart';
 
 class LoginView extends GetView<LoginController>{
@@ -95,11 +96,16 @@ class LoginView extends GetView<LoginController>{
                 fontWeight: FontWeight.w500,
                 color: Colors.white
             ),),
-                Text('Register here',style: GoogleFonts.inter(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.amber.shade600
-                ),),
+                InkWell(
+                  onTap: (){
+                    Get.toNamed(Routes.REGISTRATION);
+                  },
+                  child: Text('Register here',style: GoogleFonts.inter(
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.amber.shade600
+                  ),),
+                ),
               ],
             )
 
