@@ -11,10 +11,15 @@ import 'package:get/get.dart';
 class HomeController extends GetxController{
 
 
-  TextEditingController emailController=TextEditingController();
-  TextEditingController passwordController=TextEditingController();
+ TextEditingController displayNameController=TextEditingController();
+ TextEditingController birthDayController=TextEditingController();
+ TextEditingController horscopeController=TextEditingController();
+ TextEditingController zodiacController=TextEditingController();
+ TextEditingController heightController=TextEditingController();
+ TextEditingController weightController=TextEditingController();
 
   RxString userName='@johndoe123'.obs;
+  RxBool aboutDetail=false.obs;
 
 
 }
