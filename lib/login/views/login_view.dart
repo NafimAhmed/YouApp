@@ -67,19 +67,24 @@ class LoginView extends GetView<LoginController>{
 
 
 
-            Container(
-              alignment: Alignment.center,
-              width: Get.width,
-              height: 48,
-              decoration: BoxDecoration(
-                color: Colors.teal.shade300,
-                borderRadius: BorderRadius.circular(10)
-              ),
-              child: Text('Login',
-                style: GoogleFonts.inter(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w700,
-                    color: Colors.white
+            InkWell(
+              onTap: (){
+                controller.doLogin(controller.emailController.text, controller.emailController.text, controller.passwordController.text);
+              },
+              child: Container(
+                alignment: Alignment.center,
+                width: Get.width,
+                height: 48,
+                decoration: BoxDecoration(
+                  color: Colors.teal.shade300,
+                  borderRadius: BorderRadius.circular(10)
+                ),
+                child: Text('Login',
+                  style: GoogleFonts.inter(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                      color: Colors.white
+                  ),
                 ),
               ),
             ),
