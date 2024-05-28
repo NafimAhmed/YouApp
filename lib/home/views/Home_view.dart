@@ -39,11 +39,17 @@ class HomeView extends GetView<HomeController>{
               ),)
             ],),
             SizedBox(width: Get.width/6,),
-            Text('@johndoe123',style:GoogleFonts.inter(
+
+
+            Obx(() =>  Text('${controller.userProfileModel.value.data?.username}',style:GoogleFonts.inter(
                 fontSize: 14,
                 fontWeight: FontWeight.w600,
                 color: Colors.white
+            ),
+
             ),),
+
+
 
 
 
@@ -76,11 +82,15 @@ class HomeView extends GetView<HomeController>{
                 mainAxisAlignment: MainAxisAlignment.end,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('${controller.userName}',style:GoogleFonts.inter(
+
+                  Obx(() => Text('${controller.userProfileModel.value.data?.username}',style:GoogleFonts.inter(
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
                       color: Colors.white
-                  ),)
+                  ),),),
+
+
+
                 ],
               ),
             ),
@@ -91,7 +101,7 @@ class HomeView extends GetView<HomeController>{
 
 
               width: Get.width,
-              height: 120,
+              //height: 120,
               margin: EdgeInsets.symmetric(horizontal: 10,vertical: 21),
               padding: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
               decoration: BoxDecoration(
@@ -121,11 +131,120 @@ class HomeView extends GetView<HomeController>{
                   ),
 
 
-                  Text('Add in your your to help others know you better',style:GoogleFonts.inter(
+
+                  Obx(() => controller.userProfileModel.value.data?.birthday==null &&
+                      controller.userProfileModel.value.data?.horoscope==null &&
+                      controller.userProfileModel.value.data?.zodiac==null &&
+                      controller.userProfileModel.value.data?.height==null && controller.userProfileModel.value.data?.weight==null?
+
+                      Text('Add in your your to help others know you better',style:GoogleFonts.inter(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Colors.grey.shade400
-                  ),),
+                  ),):Container(height: 0,width: 0,),),
+
+
+                  Obx(() => controller.userProfileModel.value.data?.birthday!=null?Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      children: [
+                        Text('Birthday:',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade400
+                        ),),
+                        Text(' ${controller.userProfileModel.value.data?.birthday}',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white
+                        ),),
+                      ],
+                    ),
+                  ):Container(height: 0,width: 0,)),
+
+
+
+                  Obx(() => controller.userProfileModel.value.data?.horoscope!=null?
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      children: [
+                        Text('Horoscope:',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade400
+                        ),),
+                        Text(' ${controller.userProfileModel.value.data?.horoscope}',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white
+                        ),),
+                      ],
+                    ),
+                  ):Container(height: 0,width: 0,)),
+
+                  Obx(() => controller.userProfileModel.value.data?.zodiac!=null?
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      children: [
+                        Text('Zodiac:',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade400
+                        ),),
+                        Text(' ${controller.userProfileModel.value.data?.zodiac}',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white
+                        ),),
+                      ],
+                    ),
+                  ):Container(height: 0,width: 0,)),
+
+
+
+                  Obx(() => controller.userProfileModel.value.data?.height!=null?
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      children: [
+                        Text('Height:',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade400
+                        ),),
+                        Text(' ${controller.userProfileModel.value.data?.height}',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white
+                        ),),
+                      ],
+                    ),
+                  ):Container(height: 0,width: 0,)),
+
+
+                  Obx(() => controller.userProfileModel.value.data?.weight!=null?
+                  Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
+                    child: Row(
+                      children: [
+                        Text('Weight:',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade400
+                        ),),
+                        Text(' ${controller.userProfileModel.value.data?.weight}',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white
+                        ),),
+                      ],
+                    ),
+                  ):Container(height: 0,width: 0,)),
+
+
+
 
                 ],
               ),
@@ -251,6 +370,21 @@ class HomeView extends GetView<HomeController>{
                       fontWeight: FontWeight.w500,
                       color: Colors.grey.shade400
                   ),),
+
+
+                  Obx(
+                        () => Wrap(
+                      spacing: 4.0,
+                      children: controller.userProfileModel.value.data!.interests!.map((friendModel) => Chip(
+                          backgroundColor: Colors.grey.withOpacity(0.4),
+                          // onDeleted: () {
+                          //   controller.checkFriendList.value.remove(friendModel);
+                          //   controller.checkFriendList.refresh();
+                          // },
+                          label: Text(controller.userProfileModel.value.data!.interests.toString())))
+                          .toList(),
+                    ),
+                  ),
 
                 ],
               ),

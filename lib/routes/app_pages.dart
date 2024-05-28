@@ -8,7 +8,7 @@ import 'package:you_app/login/bindings/bindings.dart';
 import 'package:you_app/login/views/login_view.dart';
 import 'package:you_app/registration/views/registration_view.dart';
 
-import '../home/views/interest_page.dart';
+// import '../home/views/interest_page.dart';
 import '../registration/bindings/bindings.dart';
 
 part 'app_routes.dart';
@@ -34,11 +34,7 @@ class AppPages {
       page: () => const HomeView(),
       binding: HomeBinding(),
     ),
-    GetPage(
-      name: _Paths.INTEREST_PAGE,
-      page: () => const InterestPage(),
-      binding: HomeBinding(),
-    ),
+
 
   ];
 }

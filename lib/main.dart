@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'routes/app_pages.dart';
 
-void main() {
+Future<void> main() async {
   runApp(const MyApp());
+  await GetStorage.init('youapp_storage');
 }
 
 class MyApp extends StatelessWidget {

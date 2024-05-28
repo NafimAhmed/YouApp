@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 import '../../routes/app_pages.dart';
+import '../../util/app_local_stroge.dart';
 
 
 
@@ -47,18 +48,20 @@ class LoginController extends GetxController{
     debugPrint(
         "Response Code..................." + response.statusCode.toString());
 
-    if (response.statusCode == 201) {
+    if (response.statusCode == 201||response.statusCode == 200) {
       var jsonResponse = jsonDecode(response.body);
 
+      if(jsonResponse['access_token']!=null){
+
+      await getStorage.write('token', jsonResponse['access_token']);
       debugPrint("Response body..................." + jsonResponse.toString());
-
       Get.toNamed(Routes.HOME);
+      Get.snackbar('Success', '${jsonResponse['message']}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+      Get.snackbar('Success', '${getStorage.read('token')}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
 
-      Get.snackbar('Success', '${jsonResponse['message']}',
-          snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+      }
     } else {
-      Get.snackbar('Failed', 'Registration Failed',
-          snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.amber);
+
     }
   }
 
