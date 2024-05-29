@@ -381,15 +381,12 @@ class HomeView extends GetView<HomeController>{
                           //   controller.checkFriendList.value.remove(friendModel);
                           //   controller.checkFriendList.refresh();
                           // },
-                          label: Text(controller.userProfileModel.value.data!.interests.toString())))
-                          .toList(),
+                          label: Text(friendModel))).toList(),
                     ),
                   ),
-
                 ],
               ),
             )
-
 
 
           ],
