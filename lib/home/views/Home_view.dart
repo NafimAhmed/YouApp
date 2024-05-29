@@ -377,10 +377,7 @@ class HomeView extends GetView<HomeController>{
                       spacing: 4.0,
                       children: controller.userProfileModel.value.data!.interests!.map((friendModel) => Chip(
                           backgroundColor: Colors.grey.withOpacity(0.4),
-                          // onDeleted: () {
-                          //   controller.checkFriendList.value.remove(friendModel);
-                          //   controller.checkFriendList.refresh();
-                          // },
+
                           label: Text(friendModel))).toList(),
                     ),
                   ),
