@@ -27,6 +27,9 @@ class HomeController extends GetxController{
  TextEditingController weightController=TextEditingController();
 
 
+ List<String> toppings = <String>[];
+
+
   RxBool aboutDetail=false.obs;
 
   RxBool isdataLoading=true.obs;
@@ -50,6 +53,41 @@ class HomeController extends GetxController{
    }).catchError((error) {
     isdataLoading.value = true;
     debugPrint("getCustomerIncomeDetails catchError $error");
+
+   });
+  } on HttpException {
+   debugPrint("getCustomerIncomeDetails catchError http");
+
+  } finally {
+   isdataLoading.value =  true;
+  }
+
+ }
+
+
+
+
+
+ Future<void> updateProfile() async {
+
+  Get.snackbar('Success', 'update fuction called', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+
+  try {
+   await HomeProvider().UpdateUserData(displayNameController.text,birthDayController.text,heightController.text,weightController.text,toppings).then((result) async {
+
+    userProfileModel.value = result;
+    userProfileModel.refresh();
+    isdataLoading.value=false;
+    aboutDetail.value=false;
+
+    Get.snackbar('Success', 'user Name = ${userProfileModel.value.data?.username}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+    displayNameController.text='${userProfileModel.value.data?.username}';
+
+
+   }).catchError((error) {
+    isdataLoading.value = true;
+    Get.snackbar('Failed', '${error}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.blue);
+
 
    });
   } on HttpException {

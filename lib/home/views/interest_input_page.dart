@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:you_app/components/colors.dart';
+import 'package:you_app/home/controller/home_controller.dart';
 
 
 
@@ -32,8 +33,12 @@ class InterestInputPage extends StatefulWidget {
 }
 
 class InterestInputPageState extends State<InterestInputPage> {
+
+
+
+  HomeController homeController=Get.put(HomeController());
   final FocusNode _chipFocusNode = FocusNode();
-  List<String> _toppings = <String>[];
+
   List<String> _suggestions = <String>[];
 
   @override
@@ -109,7 +114,7 @@ class InterestInputPageState extends State<InterestInputPage> {
               color: Colors.grey.withOpacity(.7)
             ),
             child: ChipsInput<String>(
-              values: _toppings,
+              values: homeController.toppings,
               decoration:  InputDecoration(
                 border: InputBorder.none,
                 disabledBorder: InputBorder.none,
@@ -145,7 +150,7 @@ class InterestInputPageState extends State<InterestInputPage> {
     final List<String> results = await _suggestionCallback(value);
     setState(() {
       _suggestions = results
-          .where((String topping) => !_toppings.contains(topping))
+          .where((String topping) => !homeController.toppings.contains(topping))
           .toList();
     });
   }
@@ -160,7 +165,7 @@ class InterestInputPageState extends State<InterestInputPage> {
 
   void _selectSuggestion(String topping) {
     setState(() {
-      _toppings.add(topping);
+      homeController.toppings.add(topping);
       _suggestions = <String>[];
     });
   }
@@ -169,7 +174,7 @@ class InterestInputPageState extends State<InterestInputPage> {
 
   void _onChipDeleted(String topping) {
     setState(() {
-      _toppings.remove(topping);
+      homeController.toppings.remove(topping);
       _suggestions = <String>[];
     });
   }
@@ -177,19 +182,19 @@ class InterestInputPageState extends State<InterestInputPage> {
   void _onSubmitted(String text) {
     if (text.trim().isNotEmpty) {
       setState(() {
-        _toppings = <String>[..._toppings, text.trim()];
+        homeController.toppings = <String>[...homeController.toppings, text.trim()];
       });
     } else {
       _chipFocusNode.unfocus();
       setState(() {
-        _toppings = <String>[];
+        homeController.toppings = <String>[];
       });
     }
   }
 
   void _onChanged(List<String> data) {
     setState(() {
-      _toppings = data;
+      homeController.toppings = data;
     });
   }
 

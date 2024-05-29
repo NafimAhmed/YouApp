@@ -45,19 +45,32 @@ class HomeProvider extends GetConnect{
 
 
 
-  Future<ProfileModel> UpdateUserData() async {
+  Future<ProfileModel> UpdateUserData(String name,String birthday,String height,String weight, List<String> interest) async {
 
 
-    final url = Uri.parse('https://techtest.youapp.ai/api/getProfile');
+    Map<String, dynamic> userData = Map();
+    userData['name'] = name;
+    userData['birthday'] = birthday;
+    userData['height'] = '0';
+    userData['weight'] = '0';
+    userData['interests'] = 'music';
 
-    var response = await http.get(
+    Get.snackbar('Success', 'update user fuction called', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+
+
+    final url = Uri.parse('https://techtest.youapp.ai/api/updateProfile');
+
+    var response = await http.put(
         url,
-        headers: {
-          'x-access-token': '${getStorage.read('token')}'
-        }
+        headers: <String,String>{
+          'x-access-token': '${getStorage.read('token')}',
+        },
+      body: userData
     );
 
     debugPrint(""+response.statusCode.toString());
+
+    Get.snackbar('Success', 'update user API Call Status code ${response.statusCode}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
 
 
     if (response.statusCode == 200) {
