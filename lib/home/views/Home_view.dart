@@ -313,7 +313,7 @@ class HomeView extends GetView<HomeController>{
                   
                   // SizedBox(height: 20,),
 
-                  InputFormField(formName: 'Display name', formHints: 'Enter name', inputType: TextInputType.number, textEditingController: controller.displayNameController),
+                  InputFormField(formName: 'Display name', formHints: 'Enter name', inputType: TextInputType.text, textEditingController: controller.displayNameController),
                   InputFormField(formName: 'Birthday', formHints: 'DD MM YYYY', inputType: TextInputType.datetime, textEditingController: controller.birthDayController),
                   InputFormField(formName: 'Horoscope', formHints: '--', inputType: TextInputType.text, textEditingController: controller.horscopeController),
                   InputFormField(formName: 'Zodiac', formHints: '--', inputType: TextInputType.text, textEditingController: controller.zodiacController),
@@ -368,21 +368,23 @@ class HomeView extends GetView<HomeController>{
                   ),
 
 
-                  Text('Add in your interest to find a better match',style:GoogleFonts.inter(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.grey.shade400
-                  ),),
+
 
 
                   Obx(
-                        () => Wrap(
+                        () => controller.userProfileModel.value.data!.interests?.length==0?Text('Add in your interest to find a better match',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey.shade400
+                        ),):
+
+                            Wrap(
                       spacing: 4.0,
                       children: controller.userProfileModel.value.data!.interests!.map((friendModel) => Chip(
                           backgroundColor: Colors.grey.withOpacity(0.4),
 
                           label: Text(friendModel))).toList(),
-                    ),
+                    )
                   ),
                 ],
               ),

@@ -46,7 +46,7 @@ class HomeProvider extends GetConnect{
 
 
 
-  Future<ProfileModel> UpdateUserData(String name,String birthday,String height,String weight, List<String> interest) async {
+  Future<ProfileModel> UpdateUserData(String name,String birthday,double height,double weight, List<String> interest) async {
 
 
     Map<String, dynamic> userData = Map();
