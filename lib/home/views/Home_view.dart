@@ -279,9 +279,10 @@ class HomeView extends GetView<HomeController>{
                       InkWell(
                         onTap: (){
 
-                          Get.snackbar('Success', 'Save pressed', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+                          // Get.snackbar('Success', 'Save pressed', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
                          // controller.aboutDetail.value=false;
                           controller.updateProfile();
+                          controller.aboutDetail.value=false;
                         },
                         child: Text('Save & Update',style:GoogleFonts.inter(
                             fontSize: 12,

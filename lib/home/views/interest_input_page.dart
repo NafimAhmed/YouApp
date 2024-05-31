@@ -12,6 +12,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:you_app/components/colors.dart';
 import 'package:you_app/home/controller/home_controller.dart';
 
+import '../controller/home_controller.dart';
+
 
 
 
@@ -33,6 +35,7 @@ class InterestInputPage extends StatefulWidget {
 }
 
 class InterestInputPageState extends State<InterestInputPage> {
+
 
 
 
@@ -76,11 +79,19 @@ class InterestInputPageState extends State<InterestInputPage> {
                       ],),
                   ),
 
-                  Text('Save',style:GoogleFonts.inter(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white
-                  ),),
+                  InkWell(
+                    onTap: (){
+
+                      Get.back();
+                      homeController.updateProfile();
+
+                    },
+                    child: Text('Save',style:GoogleFonts.inter(
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.white
+                    ),),
+                  ),
 
 
 

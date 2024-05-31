@@ -87,6 +87,8 @@ class HomeController extends GetxController{
     isdataLoading.value=false;
     aboutDetail.value=false;
 
+
+
     Get.snackbar('Success', 'user Name = ${userProfileModel.value.data?.username}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
     displayNameController.text='${userProfileModel.value.data?.username}';
 
