@@ -9,6 +9,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
 import 'package:you_app/home/provider/home_provider.dart';
 import 'package:you_app/util/app_local_stroge.dart';
 
@@ -28,6 +29,7 @@ class HomeController extends GetxController{
 
 
  List<String> toppings = <String>[];
+ RxBool profilepicLoader=false.obs;
 
 
   RxBool aboutDetail=false.obs;
@@ -48,6 +50,9 @@ class HomeController extends GetxController{
 
     Get.snackbar('Success', 'user Name = ${userProfileModel.value.data?.username}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
     displayNameController.text='${userProfileModel.value.data?.username}';
+    birthDayController.text='${userProfileModel.value.data?.birthday}';
+    horscopeController.text='${userProfileModel.value.data?.horoscope}';
+    zodiacController.text='${userProfileModel.value.data?.zodiac}';
 
 
    }).catchError((error) {
@@ -95,6 +100,28 @@ class HomeController extends GetxController{
 
   } finally {
    isdataLoading.value =  true;
+  }
+
+ }
+
+
+ Future<void> getImageData() async {
+  final XFile? response = (await ImagePicker()
+      .pickImage(source: ImageSource.camera, imageQuality: 5));
+  if (response != null) {
+
+   profilepicLoader.value = true;
+
+   String imgPath = await HomeProvider().imageUpload(response.path, File(response.path));
+   //profilePicURL.value ='$IMAGE_BASE_URL$imgPath';
+   await getStorage.write("profile_picture", "$imgPath");
+
+
+   profilepicLoader.value = false;
+
+
+  } else {
+   return null;
   }
 
  }

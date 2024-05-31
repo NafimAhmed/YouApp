@@ -23,7 +23,7 @@ class HomeView extends GetView<HomeController>{
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      backgroundColor: HOME_COLOR,
+     backgroundColor: HOME_COLOR,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
@@ -292,13 +292,17 @@ class HomeView extends GetView<HomeController>{
 
                     ],
                   ),
-                  
-                  
+
+
                   Container(
                     margin: EdgeInsets.symmetric(vertical: 10),
                     child: Row(
                       children: [
-                        Icon(Icons.add_box,size: 50,color: Colors.grey,),
+                        InkWell(
+                          onTap: (){
+                            controller.getImageData();
+                          },
+                            child: Icon(Icons.add_box,size: 50,color: Colors.grey,)),
 
                         Text('Add image',style:GoogleFonts.inter(
                             fontSize: 12,
@@ -308,9 +312,9 @@ class HomeView extends GetView<HomeController>{
                       ],
                     ),
                   ),
-                  
-                  
-                  
+
+
+
                   // SizedBox(height: 20,),
 
                   InputFormField(formName: 'Display name', formHints: 'Enter name', inputType: TextInputType.text, textEditingController: controller.displayNameController),

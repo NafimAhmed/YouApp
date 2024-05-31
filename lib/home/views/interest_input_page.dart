@@ -44,104 +44,115 @@ class InterestInputPageState extends State<InterestInputPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.teal,
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: Colors.transparent,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
 
-              children: [
-              Icon(Icons.arrow_back_ios,size: 14,color: Colors.white,),
-              Text('Back',style:GoogleFonts.inter(
+
+      body: Container(
+        decoration: loginDecoration,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+
+            SizedBox(height: 70,),
+
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: (){
+                      Get.back();
+                    },
+                    child: Row(
+
+                      children: [
+                        Icon(Icons.arrow_back_ios,size: 14,color: Colors.white,),
+                        Text('Back',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white
+                        ),)
+                      ],),
+                  ),
+
+                  Text('Save',style:GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white
+                  ),),
+
+
+
+
+
+
+
+
+
+
+                ],
+              ),
+            ),
+
+
+
+            Container(
+              margin: EdgeInsets.only(left: 10,right: 10,top: 73),
+              child: Text('Tell everyone about yourself',style:GoogleFonts.inter(
                   fontSize: 14,
                   fontWeight: FontWeight.w700,
                   color: Colors.white
-              ),)
-            ],),
-
-            Text('Save',style:GoogleFonts.inter(
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
-                color: Colors.white
-            ),),
-
-
-
-
+              ),),
+            ),
+            Container(
+              margin: EdgeInsets.only(left: 10,right: 10,top: 12,bottom: 35),
+              child: Text('What interest you?',style:GoogleFonts.inter(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: Colors.white
+              ),),
+            ),
 
 
-
-
-
-
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                  border: Border.all(width: 1,color: Colors.transparent),
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.grey.withOpacity(.7)
+              ),
+              child: ChipsInput<String>(
+                values: homeController.toppings,
+                decoration:  InputDecoration(
+                  border: InputBorder.none,
+                  disabledBorder: InputBorder.none,
+                  enabledBorder: InputBorder.none,
+                  focusedBorder: InputBorder.none,
+                  hintText: 'Search for toppings',
+                ),
+                strutStyle: const StrutStyle(fontSize: 15),
+                onChanged: _onChanged,
+                onSubmitted: _onSubmitted,
+                chipBuilder: _chipBuilder,
+                onTextChanged: _onSearchChanged,
+              ),
+            ),
+            if (_suggestions.isNotEmpty)
+              Expanded(
+                child: ListView.builder(
+                  itemCount: _suggestions.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return ToppingSuggestion(
+                      _suggestions[index],
+                      onTap: _selectSuggestion,
+                    );
+                  },
+                ),
+              ),
           ],
         ),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-
-
-
-
-          Container(
-            margin: EdgeInsets.only(left: 10,right: 10,top: 73),
-            child: Text('Tell everyone about yourself',style:GoogleFonts.inter(
-                fontSize: 14,
-                fontWeight: FontWeight.w700,
-                color: Colors.white
-            ),),
-          ),
-          Container(
-            margin: EdgeInsets.only(left: 10,right: 10,top: 12,bottom: 35),
-            child: Text('What interest you?',style:GoogleFonts.inter(
-                fontSize: 20,
-                fontWeight: FontWeight.w700,
-                color: Colors.white
-            ),),
-          ),
-
-
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            decoration: BoxDecoration(
-                border: Border.all(width: 1,color: Colors.transparent),
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.grey.withOpacity(.7)
-            ),
-            child: ChipsInput<String>(
-              values: homeController.toppings,
-              decoration:  InputDecoration(
-                border: InputBorder.none,
-                disabledBorder: InputBorder.none,
-                enabledBorder: InputBorder.none,
-                focusedBorder: InputBorder.none,
-                hintText: 'Search for toppings',
-              ),
-              strutStyle: const StrutStyle(fontSize: 15),
-              onChanged: _onChanged,
-              onSubmitted: _onSubmitted,
-              chipBuilder: _chipBuilder,
-              onTextChanged: _onSearchChanged,
-            ),
-          ),
-          if (_suggestions.isNotEmpty)
-            Expanded(
-              child: ListView.builder(
-                itemCount: _suggestions.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return ToppingSuggestion(
-                    _suggestions[index],
-                    onTap: _selectSuggestion,
-                  );
-                },
-              ),
-            ),
-        ],
       ),
     );
   }
