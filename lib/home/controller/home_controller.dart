@@ -53,6 +53,8 @@ class HomeController extends GetxController{
     birthDayController.text='${userProfileModel.value.data?.birthday}';
     horscopeController.text='${userProfileModel.value.data?.horoscope}';
     zodiacController.text='${userProfileModel.value.data?.zodiac}';
+    heightController.text='${userProfileModel.value.data?.height}';
+    weightController.text='${userProfileModel.value.data?.weight}';
 
 
    }).catchError((error) {

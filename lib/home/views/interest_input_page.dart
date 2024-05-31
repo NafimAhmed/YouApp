@@ -16,11 +16,11 @@ import 'package:you_app/home/controller/home_controller.dart';
 
 
 const List<String> _pizzaToppings = <String>[
-  'Music',
-  'Basketball',
-  'Fitness',
-  'Gymming',
-  'Cycling',
+  // 'Music',
+  // 'Basketball',
+  // 'Fitness',
+  // 'Gymming',
+  // 'Cycling',
 ];
 
 class InterestInputPage extends StatefulWidget {
