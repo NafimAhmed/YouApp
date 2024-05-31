@@ -28,7 +28,7 @@ class HomeController extends GetxController{
  TextEditingController weightController=TextEditingController();
 
 
- List<String> toppings = <String>[];
+ List<String> interestSelectionList = <String>[];
  RxBool profilepicLoader=false.obs;
 
 
@@ -81,7 +81,7 @@ class HomeController extends GetxController{
   // Get.snackbar('Success', 'update fuction called', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
 
   try {
-   await HomeProvider().UpdateUserData(displayNameController.text,birthDayController.text,double.parse(heightController.text),double.parse(weightController.text),toppings).then((result) async {
+   await HomeProvider().UpdateUserData(displayNameController.text,birthDayController.text,double.parse(heightController.text),double.parse(weightController.text),interestSelectionList).then((result) async {
 
     userProfileModel.value = result;
     userProfileModel.refresh();

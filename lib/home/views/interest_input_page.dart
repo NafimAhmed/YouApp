@@ -17,7 +17,7 @@ import 'package:you_app/home/controller/home_controller.dart';
 
 
 
-const List<String> _pizzaToppings = <String>[
+const List<String> interestChoiseList = <String>[
   // 'Music',
   // 'Basketball',
   // 'Fitness',
@@ -135,13 +135,13 @@ class InterestInputPageState extends State<InterestInputPage> {
                 color: Colors.grey.withOpacity(.7)
               ),
               child: ChipsInput<String>(
-                values: homeController.toppings,
+                values: homeController.interestSelectionList,
                 decoration:  InputDecoration(
                   border: InputBorder.none,
                   disabledBorder: InputBorder.none,
                   enabledBorder: InputBorder.none,
                   focusedBorder: InputBorder.none,
-                  hintText: 'Search for toppings',
+                  hintText: 'Search for interest',
                 ),
                 strutStyle: const StrutStyle(fontSize: 15),
                 onChanged: _onChanged,
@@ -172,7 +172,7 @@ class InterestInputPageState extends State<InterestInputPage> {
     final List<String> results = await _suggestionCallback(value);
     setState(() {
       _suggestions = results
-          .where((String topping) => !homeController.toppings.contains(topping))
+          .where((String topping) => !homeController.interestSelectionList.contains(topping))
           .toList();
     });
   }
@@ -187,7 +187,7 @@ class InterestInputPageState extends State<InterestInputPage> {
 
   void _selectSuggestion(String topping) {
     setState(() {
-      homeController.toppings.add(topping);
+      homeController.interestSelectionList.add(topping);
       _suggestions = <String>[];
     });
   }
@@ -196,7 +196,7 @@ class InterestInputPageState extends State<InterestInputPage> {
 
   void _onChipDeleted(String topping) {
     setState(() {
-      homeController.toppings.remove(topping);
+      homeController.interestSelectionList.remove(topping);
       _suggestions = <String>[];
     });
   }
@@ -204,25 +204,25 @@ class InterestInputPageState extends State<InterestInputPage> {
   void _onSubmitted(String text) {
     if (text.trim().isNotEmpty) {
       setState(() {
-        homeController.toppings = <String>[...homeController.toppings, text.trim()];
+        homeController.interestSelectionList = <String>[...homeController.interestSelectionList, text.trim()];
       });
     } else {
       _chipFocusNode.unfocus();
       setState(() {
-        homeController.toppings = <String>[];
+        homeController.interestSelectionList = <String>[];
       });
     }
   }
 
   void _onChanged(List<String> data) {
     setState(() {
-      homeController.toppings = data;
+      homeController.interestSelectionList = data;
     });
   }
 
   FutureOr<List<String>> _suggestionCallback(String text) {
     if (text.isNotEmpty) {
-      return _pizzaToppings.where((String topping) {
+      return interestChoiseList.where((String topping) {
         return topping.toLowerCase().contains(text.toLowerCase());
       }).toList();
     }
