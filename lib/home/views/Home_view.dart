@@ -30,14 +30,19 @@ class HomeView extends GetView<HomeController>{
         title: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(children: [
-              Icon(Icons.arrow_back_ios,size: 14,color: Colors.white,),
-              Text('Back',style:GoogleFonts.inter(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w700,
-                  color: Colors.white
-              ),)
-            ],),
+            InkWell(
+              onTap: (){
+                Get.back();
+              },
+              child: Row(children: [
+                Icon(Icons.arrow_back_ios,size: 14,color: Colors.white,),
+                Text('Back',style:GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white
+                ),)
+              ],),
+            ),
             SizedBox(width: Get.width/6,),
 
 
@@ -91,6 +96,50 @@ class HomeView extends GetView<HomeController>{
 
 
 
+                  Obx(() => controller.userProfileModel.value.data?.horoscope!=null && controller.userProfileModel.value.data?.zodiac!=null?
+
+
+                  Row(
+                    children: [
+                      Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        height: 30,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.black
+                        ),
+                        child: Text('${controller.userProfileModel.value.data?.horoscope}'??'',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white
+                        ),),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        height: 30,
+
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.black
+                        ),
+                        child: Text('${controller.userProfileModel.value.data?.zodiac}'??'',style:GoogleFonts.inter(
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white
+                        ),),
+                      )
+                    ],
+                  ):Container(height: 0,width: 0,)
+
+                  ),
+
+
+
+
+
                 ],
               ),
             ),
@@ -121,9 +170,9 @@ class HomeView extends GetView<HomeController>{
                       ),),
 
                       InkWell(
-                        onTap: (){
-                          controller.aboutDetail.value=true;
-                        },
+                          onTap: (){
+                            controller.aboutDetail.value=true;
+                          },
 
                           child: Icon(Icons.border_color_outlined,color: Colors.white,size: 20,))
 
@@ -137,7 +186,7 @@ class HomeView extends GetView<HomeController>{
                       controller.userProfileModel.value.data?.zodiac==null &&
                       controller.userProfileModel.value.data?.height==null && controller.userProfileModel.value.data?.weight==null?
 
-                      Text('Add in your your to help others know you better',style:GoogleFonts.inter(
+                  Text('Add in your your to help others know you better',style:GoogleFonts.inter(
                       fontSize: 14,
                       fontWeight: FontWeight.w500,
                       color: Colors.grey.shade400
@@ -280,7 +329,7 @@ class HomeView extends GetView<HomeController>{
                         onTap: (){
 
                           // Get.snackbar('Success', 'Save pressed', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
-                         // controller.aboutDetail.value=false;
+                          // controller.aboutDetail.value=false;
                           controller.updateProfile();
                           controller.aboutDetail.value=false;
                         },
@@ -300,9 +349,9 @@ class HomeView extends GetView<HomeController>{
                     child: Row(
                       children: [
                         InkWell(
-                          onTap: (){
-                            controller.getImageData();
-                          },
+                            onTap: (){
+                              controller.getImageData();
+                            },
                             child: Icon(Icons.add_box,size: 50,color: Colors.grey,)),
 
                         Text('Add image',style:GoogleFonts.inter(
@@ -366,7 +415,7 @@ class HomeView extends GetView<HomeController>{
                           //Get.toNamed(Routes.INTEREST_PAGE);
                           Get.to(InterestInputPage());
                         },
-                          child: Icon(Icons.border_color_outlined,color: Colors.white,size: 20,),
+                        child: Icon(Icons.border_color_outlined,color: Colors.white,size: 20,),
                       )
 
                     ],
@@ -377,19 +426,24 @@ class HomeView extends GetView<HomeController>{
 
 
                   Obx(
-                        () => controller.userProfileModel.value.data!.interests?.length==0?Text('Add in your interest to find a better match',style:GoogleFonts.inter(
-                            fontSize: 14,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey.shade400
-                        ),):
+                          () => controller.userProfileModel.value.data?.interests?.length==0?Text('Add in your interest to find a better match',style:GoogleFonts.inter(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.grey.shade400
+                      ),):
+                      Wrap(
+                        spacing: 4.0,
+                        children: controller.userProfileModel.value.data?.interests?.isNotEmpty==true?
 
-                            Wrap(
-                      spacing: 4.0,
-                      children: controller.userProfileModel.value.data!.interests!.map((friendModel) => Chip(
-                          backgroundColor: Colors.grey.withOpacity(0.4),
 
-                          label: Text(friendModel))).toList(),
-                    )
+                        controller.userProfileModel.value.data!.interests!.map((friendModel) => Chip(
+                            backgroundColor: Colors.grey.withOpacity(0.4),
+
+                            label: Text(friendModel))).toList():[],
+
+
+
+                      )
                   ),
                 ],
               ),
@@ -398,7 +452,9 @@ class HomeView extends GetView<HomeController>{
 
           ],
         ),
-      ),
+      )//Obx(() => controller.isdataLoading.value==true? Center(child: CircularProgressIndicator()):)
+
+      ,
     );
   }
   

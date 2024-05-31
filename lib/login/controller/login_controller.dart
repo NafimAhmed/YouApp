@@ -57,7 +57,7 @@ class LoginController extends GetxController{
       debugPrint("Response body..................." + jsonResponse.toString());
       Get.toNamed(Routes.HOME);
       Get.snackbar('Success', '${jsonResponse['message']}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
-      Get.snackbar('Success', '${getStorage.read('token')}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+      //Get.snackbar('Success', '${getStorage.read('token')}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
 
       }
     } else {
