@@ -9,11 +9,11 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:you_app/components/colors.dart';
 import 'package:you_app/components/form_field.dart';
-import 'package:you_app/components/password_field_component.dart';
+// import 'package:you_app/components/password_field_component.dart';
 import 'package:you_app/home/views/interest_input_page.dart';
 
-import '../../components/text_field_component.dart';
-import '../../routes/app_pages.dart';
+// import '../../components/text_field_component.dart';
+// import '../../routes/app_pages.dart';
 import '../controller/home_controller.dart';
 
 class HomeView extends GetView<HomeController>{
@@ -109,7 +109,7 @@ class HomeView extends GetView<HomeController>{
                             borderRadius: BorderRadius.circular(25),
                             color: Colors.black
                         ),
-                        child: Text('${controller.userProfileModel.value.data?.horoscope}'??'',style:GoogleFonts.inter(
+                        child: Text(controller.userProfileModel.value.data?.horoscope??'',style:GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.white
@@ -117,15 +117,15 @@ class HomeView extends GetView<HomeController>{
                       ),
                       Container(
                         alignment: Alignment.center,
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        margin: EdgeInsets.symmetric(horizontal: 5),
+                        padding: const EdgeInsets.symmetric(horizontal: 10),
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
                         height: 30,
 
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             color: Colors.black
                         ),
-                        child: Text('${controller.userProfileModel.value.data?.zodiac}'??'',style:GoogleFonts.inter(
+                        child: Text(controller.userProfileModel.value.data?.zodiac??'',style:GoogleFonts.inter(
                             fontSize: 14,
                             fontWeight: FontWeight.w600,
                             color: Colors.white

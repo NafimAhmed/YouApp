@@ -78,7 +78,7 @@ class HomeController extends GetxController{
 
  Future<void> updateProfile() async {
 
-  Get.snackbar('Success', 'update fuction called', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+  // Get.snackbar('Success', 'update fuction called', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
 
   try {
    await HomeProvider().UpdateUserData(displayNameController.text,birthDayController.text,double.parse(heightController.text),double.parse(weightController.text),toppings).then((result) async {
@@ -90,13 +90,13 @@ class HomeController extends GetxController{
 
 
 
-    Get.snackbar('Success', 'user Name = ${userProfileModel.value.data?.username}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+    // Get.snackbar('Success', 'user Name = ${userProfileModel.value.data?.username}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
     displayNameController.text='${userProfileModel.value.data?.username}';
 
 
    }).catchError((error) {
     isdataLoading.value = true;
-    Get.snackbar('Failed', '${error}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.blue);
+    // Get.snackbar('Failed', '${error}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.blue);
 
 
    });

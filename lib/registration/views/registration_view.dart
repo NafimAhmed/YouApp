@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:you_app/components/colors.dart';
 import 'package:you_app/components/password_field_component.dart';
-import 'package:you_app/routes/app_pages.dart';
+// import 'package:you_app/routes/app_pages.dart';
 
 import '../../components/text_field_component.dart';
 import '../controller/registration_controller.dart';

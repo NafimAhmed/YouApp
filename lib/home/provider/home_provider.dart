@@ -56,7 +56,7 @@ class HomeProvider extends GetConnect{
     userData['weight'] = weight;
     userData['interests'] = interest;
 
-    Get.snackbar('Success', 'update user fuction called', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+    // Get.snackbar('Success', 'update user fuction called', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
 
 
     final url = Uri.parse('https://techtest.youapp.ai/api/updateProfile');
@@ -75,7 +75,7 @@ class HomeProvider extends GetConnect{
 
     debugPrint(""+response.statusCode.toString());
 
-    Get.snackbar('Success', 'update user API Call Status code ${response.statusCode}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
+    // Get.snackbar('Success', 'update user API Call Status code ${response.statusCode}', snackPosition: SnackPosition.BOTTOM, backgroundColor: Colors.green);
 
 
     if (response.statusCode == 200) {
